@@ -8,5 +8,16 @@
   },
   "dependencies": {
     "express": "^4.17.1"
-  }
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/costeva/Apis.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/costeva/Apis/issues"
+  },
+  "homepage": "https://github.com/costeva/Apis#readme"
 }
