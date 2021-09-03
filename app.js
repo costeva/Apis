@@ -62,8 +62,43 @@ app.post('/personajes', function(req, res){
     })
 })
 
+app.put('/personajes', function(req, res){
+    promises.readFile('./data/personajes.json')
+    .then(function(data){
+        const personajes = JSON.parse(data.toString())
+        const id = req.body.id;
+        const valor =req.body.name;
 
-app.listen(80, function(){
+        const per = personajes.find(function(p){
+            return p.id == id
+        } )
+
+        if(per){
+            per.name = valor
+
+        //    personajes.push(per);
+    
+            
+        }
+        else{
+            res.status(404).json({err: 404, msg: `No se encuentra el personaje #${req.body.id}`})   
+        }
+
+       
+        promises.writeFile('./data/personajes.json', JSON.stringify(personajes),)
+        .then(function(){
+            res.status(201).json(per)
+        })
+        
+    })
+    .catch(function(err){
+        res.status(500)
+        res.json({err: 500, msg: err.message})
+    })
+})
+
+
+app.listen(9001, function(){
     console.log("Server ON!")
 })
 
